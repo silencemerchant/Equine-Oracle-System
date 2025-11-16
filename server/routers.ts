@@ -2,6 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { z } from "zod";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -17,12 +18,28 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  prediction: router({
+    predictRanking: publicProcedure
+      .input(z.array(z.object({
+        horse_name: z.string(),
+        distance: z.number(),
+        days_since_last_race: z.number(),
+        PREV_RACE_WON: z.number(),
+        WIN_STREAK: z.number(),
+        IMPLIED_PROBABILITY: z.number(),
+        NORMALIZED_VOLUME: z.number(),
+        MARKET_ACTIVITY_WINDOW_HOURS: z.number(),
+      })))
+      .mutation(async ({ input }) => {
+        return {
+          predictions: input.map((horse, idx) => ({
+            horse_name: horse.horse_name,
+            ranking_score: Math.random(),
+            rank: idx + 1,
+          })),
+        };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
