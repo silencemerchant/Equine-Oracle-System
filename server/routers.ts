@@ -3,6 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
+import { predictRanking, getBettingSignals } from "./prediction_wrapper";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -31,13 +32,43 @@ export const appRouter = router({
         MARKET_ACTIVITY_WINDOW_HOURS: z.number(),
       })))
       .mutation(async ({ input }) => {
-        return {
-          predictions: input.map((horse, idx) => ({
-            horse_name: horse.horse_name,
-            ranking_score: Math.random(),
-            rank: idx + 1,
+        try {
+          const predictions = await predictRanking(input);
+          return predictions;
+        } catch (error) {
+          console.error("Prediction error:", error);
+          return {
+            error: "Prediction failed",
+            predictions: []
+          };
+        }
+      }),
+    
+    bettingSignals: publicProcedure
+      .input(z.object({
+        predictions: z.object({
+          success: z.boolean().optional(),
+          predictions: z.array(z.object({
+            horse_name: z.string(),
+            ranking_score: z.number(),
+            rank: z.number(),
+            confidence: z.number().optional(),
           })),
-        };
+        }),
+        confidenceThreshold: z.number().optional().default(0.65),
+      }))
+      .query(async ({ input }) => {
+        try {
+          const signals = await getBettingSignals(input.predictions, input.confidenceThreshold);
+          return signals;
+        } catch (error) {
+          console.error("Betting signals error:", error);
+          return {
+            error: "Failed to generate betting signals",
+            signals: [],
+            recommendation: "HOLD"
+          };
+        }
       }),
   }),
 });

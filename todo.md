@@ -2,11 +2,12 @@
 
 ## Phase 1: Backend API Integration
 - [x] Initialize full-stack web project (tRPC + React + Express)
-- [ ] Integrate LightGBM Ranker model into the project
-- [ ] Integrate scaler and feature columns into the project
-- [ ] Create tRPC procedures for horse race prediction
-- [ ] Create tRPC procedure for batch predictions
-- [ ] Create tRPC procedure for ranking predictions
+- [x] Integrate LightGBM Ranker model into the project
+- [x] Integrate scaler and feature columns into the project
+- [x] Create Python helper module for model inference
+- [x] Update tRPC procedures to use actual model predictions
+- [x] Create tRPC procedure for betting signals
+- [ ] Test model inference with sample data
 
 ## Phase 2: Database Schema & API Keys
 - [ ] Design API key management table in Drizzle schema
@@ -40,3 +41,13 @@
 - [ ] Create user guide for dashboard
 - [ ] Create deployment guide
 - [ ] Launch public API
+
+
+## Phase 7: Betting Confidence & Signals
+- [x] Create confidence scoring system based on model predictions
+- [x] Implement betting signal generation (when to place bets)
+- [x] Create tRPC procedure for betting signals endpoint
+- [x] Create betting strategy guide document
+- [ ] Add confidence threshold configuration
+- [ ] Create betting history tracking table
+- [ ] Build betting signals dashboard
