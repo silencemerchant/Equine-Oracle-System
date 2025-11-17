@@ -1,0 +1,249 @@
+{
+  "correlation_matrix": {
+    "distance_numeric": {
+      "distance_numeric": 1.0,
+      "days_since_last_race": 0.009583207875711987,
+      "career_starts": -0.013642523403554282,
+      "avg_position_L5": -0.0658921306143827,
+      "win_rate_cumulative": -0.004636591029999052,
+      "race_class_score": 0.11794807270945376,
+      "track_popularity": 0.02852548714759838,
+      "avg_perf_index_L5": -0.016845676617218062,
+      "weighted_form_score": 0.02908618038421881
+    },
+    "days_since_last_race": {
+      "distance_numeric": 0.009583207875711987,
+      "days_since_last_race": 1.0,
+      "career_starts": 0.04708167114118165,
+      "avg_position_L5": -0.02668477390269472,
+      "win_rate_cumulative": 0.030480999164967222,
+      "race_class_score": 0.01431636472536829,
+      "track_popularity": 0.03978102733020255,
+      "avg_perf_index_L5": 0.005601382360064911,
+      "weighted_form_score": 0.019886213956169844
+    },
+    "career_starts": {
+      "distance_numeric": -0.013642523403554282,
+      "days_since_last_race": 0.04708167114118165,
+      "career_starts": 1.0,
+      "avg_position_L5": 0.07185751897867047,
+      "win_rate_cumulative": -0.007341194637683629,
+      "race_class_score": 0.04646529490904392,
+      "track_popularity": 0.008733032146614896,
+      "avg_perf_index_L5": -0.0051510295649943305,
+      "weighted_form_score": -0.0576925618173131
+    },
+    "avg_position_L5": {
+      "distance_numeric": -0.0658921306143827,
+      "days_since_last_race": -0.02668477390269472,
+      "career_starts": 0.07185751897867047,
+      "avg_position_L5": 1.0,
+      "win_rate_cumulative": 0.07710996276786151,
+      "race_class_score": 0.042672011969086474,
+      "track_popularity": 0.0006207998992157226,
+      "avg_perf_index_L5": -0.030607330590718466,
+      "weighted_form_score": -0.7500693595158797
+    },
+    "win_rate_cumulative": {
+      "distance_numeric": -0.004636591029999052,
+      "days_since_last_race": 0.030480999164967222,
+      "career_starts": -0.007341194637683629,
+      "avg_position_L5": 0.07710996276786151,
+      "win_rate_cumulative": 1.0,
+      "race_class_score": 0.0353348245264013,
+      "track_popularity": 0.024093912966813562,
+      "avg_perf_index_L5": -0.010988573872615648,
+      "weighted_form_score": 0.3292629205181034
+    },
+    "race_class_score": {
+      "distance_numeric": 0.11794807270945376,
+      "days_since_last_race": 0.01431636472536829,
+      "career_starts": 0.04646529490904392,
+      "avg_position_L5": 0.042672011969086474,
+      "win_rate_cumulative": 0.0353348245264013,
+      "race_class_score": 1.0,
+      "track_popularity": -0.03081028840966998,
+      "avg_perf_index_L5": 0.026792392754410244,
+      "weighted_form_score": -0.016587571837320788
+    },
+    "track_popularity": {
+      "distance_numeric": 0.02852548714759838,
+      "days_since_last_race": 0.03978102733020255,
+      "career_starts": 0.008733032146614896,
+      "avg_position_L5": 0.0006207998992157226,
+      "win_rate_cumulative": 0.024093912966813562,
+      "race_class_score": -0.03081028840966998,
+      "track_popularity": 1.0,
+      "avg_perf_index_L5": -0.04521604468838464,
+      "weighted_form_score": 0.002861599318221207
+    },
+    "avg_perf_index_L5": {
+      "distance_numeric": -0.016845676617218062,
+      "days_since_last_race": 0.005601382360064911,
+      "career_starts": -0.0051510295649943305,
+      "avg_position_L5": -0.030607330590718466,
+      "win_rate_cumulative": -0.010988573872615648,
+      "race_class_score": 0.026792392754410244,
+      "track_popularity": -0.04521604468838464,
+      "avg_perf_index_L5": 1.0,
+      "weighted_form_score": 0.020943741794225403
+    },
+    "weighted_form_score": {
+      "distance_numeric": 0.02908618038421881,
+      "days_since_last_race": 0.019886213956169844,
+      "career_starts": -0.0576925618173131,
+      "avg_position_L5": -0.7500693595158797,
+      "win_rate_cumulative": 0.3292629205181034,
+      "race_class_score": -0.016587571837320788,
+      "track_popularity": 0.002861599318221207,
+      "avg_perf_index_L5": 0.020943741794225403,
+      "weighted_form_score": 1.0
+    }
+  },
+  "high_correlations": [
+    {
+      "feature1": "avg_position_L5",
+      "feature2": "weighted_form_score",
+      "correlation": -0.7500693595158797
+    }
+  ],
+  "vif_scores": [
+    {
+      "feature": "distance_numeric",
+      "vif": 1.022677070266076,
+      "r_squared": 0.02217422383409451
+    },
+    {
+      "feature": "days_since_last_race",
+      "vif": 1.0065725862559969,
+      "r_squared": 0.006529669440376917
+    },
+    {
+      "feature": "career_starts",
+      "vif": 1.0100630562192174,
+      "r_squared": 0.009962800002689565
+    },
+    {
+      "feature": "avg_position_L5",
+      "vif": 3.158767586416282,
+      "r_squared": 0.6834208365628665
+    },
+    {
+      "feature": "win_rate_cumulative",
+      "vif": 1.5402643164628034,
+      "r_squared": 0.3507607822165959
+    },
+    {
+      "feature": "race_class_score",
+      "vif": 1.0223855791335166,
+      "r_squared": 0.021895437093790604
+    },
+    {
+      "feature": "track_popularity",
+      "vif": 1.0062929430393832,
+      "r_squared": 0.00625358955651234
+    },
+    {
+      "feature": "avg_perf_index_L5",
+      "vif": 1.0042928594597447,
+      "r_squared": 0.004274509590811881
+    },
+    {
+      "feature": "weighted_form_score",
+      "vif": 3.496345487665995,
+      "r_squared": 0.7139870749250368
+    }
+  ],
+  "summary_statistics": {
+    "distance_numeric": {
+      "count": 1000.0,
+      "mean": 2078.5644173042942,
+      "std": 642.7021962844692,
+      "min": 1010.1904506101263,
+      "25%": 1519.1411886951403,
+      "50%": 2092.976228402984,
+      "75%": 2637.5030935462987,
+      "max": 3199.3788812294874
+    },
+    "days_since_last_race": {
+      "count": 1000.0,
+      "mean": 22.42334861896955,
+      "std": 19.47573672490228,
+      "min": 7.0,
+      "25%": 7.0,
+      "50%": 15.358038822154906,
+      "75%": 30.010192337846476,
+      "max": 90.0
+    },
+    "career_starts": {
+      "count": 1000.0,
+      "mean": 19.9,
+      "std": 4.524872868321769,
+      "min": 7.0,
+      "25%": 17.0,
+      "50%": 20.0,
+      "75%": 23.0,
+      "max": 36.0
+    },
+    "avg_position_L5": {
+      "count": 1000.0,
+      "mean": 5.825539911882273,
+      "std": 2.985003795030789,
+      "min": 1.0,
+      "25%": 3.5221139788163343,
+      "50%": 5.339592047391827,
+      "75%": 7.8413541581948625,
+      "max": 12.0
+    },
+    "win_rate_cumulative": {
+      "count": 1000.0,
+      "mean": 0.16859305652024598,
+      "std": 0.10325344782889934,
+      "min": 0.0028421081965278525,
+      "25%": 0.09076707057273789,
+      "50%": 0.14793153706947088,
+      "75%": 0.23449455457723162,
+      "max": 0.5
+    },
+    "race_class_score": {
+      "count": 1000.0,
+      "mean": 1.582,
+      "std": 1.4530613845902682,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 1.0,
+      "75%": 3.0,
+      "max": 5.0
+    },
+    "track_popularity": {
+      "count": 1000.0,
+      "mean": 0.616344142911375,
+      "std": 0.19148272447812892,
+      "min": 0.03625340059366435,
+      "25%": 0.4863111652615927,
+      "50%": 0.6341699758428283,
+      "75%": 0.7639244795083953,
+      "max": 0.9952979337418388
+    },
+    "avg_perf_index_L5": {
+      "count": 1000.0,
+      "mean": 0.0374424446376735,
+      "std": 0.8129511977467754,
+      "min": -2.0,
+      "25%": -0.5332348426885004,
+      "50%": 0.04443338356939508,
+      "75%": 0.5902300459203351,
+      "max": 2.0
+    },
+    "weighted_form_score": {
+      "count": 1000.0,
+      "mean": 64.19823019520805,
+      "std": 18.41126235055164,
+      "min": 0.9047220845719366,
+      "25%": 51.97849540396604,
+      "50%": 64.88251085486237,
+      "75%": 77.76409905855724,
+      "max": 100.0
+    }
+  }
+}

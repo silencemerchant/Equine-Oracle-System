@@ -1,0 +1,65 @@
+{
+  "total_models": 5,
+  "base_models": 4,
+  "ranking_models": 1,
+  "base_features": 9,
+  "ranker_features": 56,
+  "top_features_by_model": {
+    "LightGBM": [
+      {
+        "feature": "avg_perf_index_L5",
+        "importance": 878.0
+      },
+      {
+        "feature": "weighted_form_score",
+        "importance": 710.0
+      },
+      {
+        "feature": "days_since_last_race",
+        "importance": 633.0
+      }
+    ],
+    "XGBoost": [
+      {
+        "feature": "race_class_score",
+        "importance": 0.1419977843761444
+      },
+      {
+        "feature": "weighted_form_score",
+        "importance": 0.116184763610363
+      },
+      {
+        "feature": "avg_perf_index_L5",
+        "importance": 0.11361870169639587
+      }
+    ],
+    "Random Forest": [
+      {
+        "feature": "avg_perf_index_L5",
+        "importance": 0.15287431938934704
+      },
+      {
+        "feature": "days_since_last_race",
+        "importance": 0.1367921042373471
+      },
+      {
+        "feature": "weighted_form_score",
+        "importance": 0.12579196512697732
+      }
+    ],
+    "Gradient Boosting": [
+      {
+        "feature": "avg_perf_index_L5",
+        "importance": 0.1900036264141573
+      },
+      {
+        "feature": "days_since_last_race",
+        "importance": 0.1472478910741188
+      },
+      {
+        "feature": "weighted_form_score",
+        "importance": 0.11884400943265135
+      }
+    ]
+  }
+}

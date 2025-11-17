@@ -1,0 +1,9 @@
+Flask
+Flask-CORS
+Flask-Limiter
+pandas
+numpy
+scikit-learn
+joblib
+lightgbm
+xgboost

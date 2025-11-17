@@ -48,6 +48,15 @@
 - [x] Implement betting signal generation (when to place bets)
 - [x] Create tRPC procedure for betting signals endpoint
 - [x] Create betting strategy guide document
-- [ ] Add confidence threshold configuration
+- [x] Add confidence threshold configuration
 - [ ] Create betting history tracking table
 - [ ] Build betting signals dashboard
+
+## Phase 8: Advanced Ensemble Architecture
+- [x] Integrate meta-ensemble architecture (4 ranker models)
+- [x] Implement weighted ensemble strategy
+- [x] Create ensemble prediction service
+- [x] Add metrics calculator and performance monitoring
+- [x] Implement auto-retraining engine
+- [ ] Integrate live data API (TAB NZ)
+- [ ] Deploy continuous retraining pipeline
