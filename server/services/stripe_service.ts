@@ -2,9 +2,13 @@ import Stripe from 'stripe';
 import { eq } from 'drizzle-orm';
 import { getDb } from '../db';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-11-20',
-});
+// Initialize Stripe only if API key is available (skip in test environment)
+let stripe: any = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2024-11-20',
+  });
+}
 
 export interface SubscriptionTier {
   id: 'basic' | 'pro' | 'api_starter' | 'api_professional';
@@ -85,6 +89,9 @@ export async function createStripeCustomer(
   email: string,
   name?: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe not configured. Set STRIPE_SECRET_KEY environment variable.');
+  }
   try {
     const customer = await stripe.customers.create({
       email,
@@ -108,6 +115,9 @@ export async function createSubscription(
   customerId: string,
   tierId: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe not configured. Set STRIPE_SECRET_KEY environment variable.');
+  }
   const tier = SUBSCRIPTION_TIERS[tierId];
   if (!tier) {
     throw new Error(`Invalid tier: ${tierId}`);
@@ -154,6 +164,9 @@ export async function createSubscription(
  * Cancel a subscription
  */
 export async function cancelSubscription(subscriptionId: string) {
+  if (!stripe) {
+    throw new Error('Stripe not configured. Set STRIPE_SECRET_KEY environment variable.');
+  }
   try {
     const subscription = await stripe.subscriptions.del(subscriptionId);
     return subscription;
@@ -167,6 +180,9 @@ export async function cancelSubscription(subscriptionId: string) {
  * Get subscription details
  */
 export async function getSubscription(subscriptionId: string) {
+  if (!stripe) {
+    throw new Error('Stripe not configured. Set STRIPE_SECRET_KEY environment variable.');
+  }
   try {
     const subscription = await stripe.subscriptions.retrieve(subscriptionId);
     return subscription;
@@ -179,7 +195,7 @@ export async function getSubscription(subscriptionId: string) {
 /**
  * Handle Stripe webhook events
  */
-export async function handleStripeWebhook(event: Stripe.Event) {
+export async function handleStripeWebhook(event: any) {
   const db = await getDb();
   if (!db) {
     console.warn('Database not available for webhook processing');
@@ -242,6 +258,9 @@ export async function validateApiKey(apiKey: string): Promise<boolean> {
  * Get customer's subscription status
  */
 export async function getCustomerSubscriptionStatus(customerId: string) {
+  if (!stripe) {
+    return null;
+  }
   try {
     const subscriptions = await stripe.subscriptions.list({
       customer: customerId,
@@ -279,6 +298,9 @@ export async function createBillingPortalSession(
   customerId: string,
   returnUrl: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe not configured. Set STRIPE_SECRET_KEY environment variable.');
+  }
   try {
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
