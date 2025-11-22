@@ -1,199 +1,326 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { APP_LOGO, APP_TITLE, getLoginUrl } from "@/const";
-import { Activity, BarChart3, Shield, Sparkles, TrendingUp, Zap } from "lucide-react";
-import { Link } from "wouter";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, BarChart3, Brain, Zap, TrendingUp, Shield } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Home() {
   const { user, isAuthenticated } = useAuth();
+  const [, navigate] = useLocation();
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      // Redirect to login
+      window.location.href = "/api/oauth/login";
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       {/* Navigation */}
-      <nav className="border-b border-border bg-card/50 backdrop-blur">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            {APP_LOGO && <img src={APP_LOGO} alt={APP_TITLE} className="h-8 w-8" />}
-            <span className="text-xl font-bold text-primary">{APP_TITLE}</span>
+      <nav className="border-b border-slate-700 bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Brain className="w-8 h-8 text-blue-400" />
+            <span className="text-xl font-bold">Equine Oracle</span>
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/live">
-              <Button variant="ghost">Live Races</Button>
-            </Link>
+          <div className="flex gap-4">
             {isAuthenticated ? (
               <>
-                <Link href="/history">
-                  <Button variant="ghost">History</Button>
-                </Link>
-                <Link href="/subscription">
-                  <Button variant="outline">Subscription</Button>
-                </Link>
+                <Button variant="outline" onClick={() => navigate("/dashboard")}>
+                  Dashboard
+                </Button>
               </>
             ) : (
-              <a href={getLoginUrl()}>
-                <Button variant="default">Sign In</Button>
-              </a>
+              <Button onClick={handleGetStarted} className="bg-blue-600 hover:bg-blue-700">
+                Sign In
+              </Button>
             )}
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="container py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm text-primary">
-            <Sparkles className="h-4 w-4" />
-            <span>AI-Powered Horse Racing Predictions</span>
-          </div>
-          <h1 className="mb-6 text-5xl font-bold tracking-tight text-foreground md:text-6xl">
-            Predict Winners with
-            <span className="text-primary"> Machine Learning</span>
-          </h1>
-          <p className="mb-8 text-xl text-muted-foreground">
-            Harness the power of advanced AI algorithms to predict New Zealand TAB horse race
-            winners with unprecedented accuracy. Get confidence scores, detailed analysis, and
-            real-time predictions.
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link href="/live">
-              <Button size="lg" className="w-full sm:w-auto">
-                <Zap className="mr-2 h-5 w-5" />
-                View Live Races
-              </Button>
-            </Link>
-            {!isAuthenticated && (
-              <a href={getLoginUrl()}>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  Sign In
-                </Button>
-              </a>
-            )}
-            <Link href="/subscription">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                View Pricing
-              </Button>
-            </Link>
-          </div>
-        </div>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <Badge className="mb-4 bg-blue-500/20 text-blue-300 border-blue-500/30">
+          AI-Powered Horse Racing Predictions
+        </Badge>
+        
+        <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
+          Stop Guessing.
+          <br />
+          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Start Winning.
+          </span>
+        </h1>
+        
+        <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          Get confidence-based betting signals for NZ TAB races. Our machine learning models analyze years of racing data to predict winners with 78% accuracy on top-3 finishes.
+        </p>
+        
+        <Button
+          onClick={handleGetStarted}
+          size="lg"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+        >
+          Get Started Free <ArrowRight className="ml-2 w-5 h-5" />
+        </Button>
       </section>
 
       {/* Features Section */}
-      <section className="container py-20">
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-foreground">
-            Why Choose {APP_TITLE}?
-          </h2>
-          <p className="text-muted-foreground">
-            Advanced machine learning meets horse racing expertise
-          </p>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="border-border bg-card">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Why Choose Equine Oracle?</h2>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Activity className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Real-Time Predictions</CardTitle>
-              <CardDescription>
-                Get instant AI-powered predictions for upcoming races with confidence scores
-              </CardDescription>
+              <Brain className="w-10 h-10 text-blue-400 mb-4" />
+              <CardTitle>AI-Powered</CardTitle>
             </CardHeader>
+            <CardContent className="text-slate-300">
+              Advanced machine learning models trained on years of racing data. Continuously improving through live feedback.
+            </CardContent>
           </Card>
 
-          <Card className="border-border bg-card">
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <BarChart3 className="h-6 w-6 text-primary" />
-              </div>
+              <Zap className="w-10 h-10 text-yellow-400 mb-4" />
+              <CardTitle>Real-Time Signals</CardTitle>
+            </CardHeader>
+            <CardContent className="text-slate-300">
+              Get betting signals instantly. Know exactly when to bet, when to hold, and when to skip based on confidence scores.
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
+            <CardHeader>
+              <Shield className="w-10 h-10 text-green-400 mb-4" />
+              <CardTitle>Risk Management</CardTitle>
+            </CardHeader>
+            <CardContent className="text-slate-300">
+              Transparent confidence scoring. See exactly why each prediction is made. Manage your risk with data-driven insights.
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
+            <CardHeader>
+              <BarChart3 className="w-10 h-10 text-purple-400 mb-4" />
               <CardTitle>Advanced Analytics</CardTitle>
-              <CardDescription>
-                Access detailed performance metrics, historical trends, and model insights
-              </CardDescription>
             </CardHeader>
+            <CardContent className="text-slate-300">
+              Track your ROI, calibration metrics, and performance trends. Understand what works for your betting strategy.
+            </CardContent>
           </Card>
 
-          <Card className="border-border bg-card">
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <TrendingUp className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Ensemble Models</CardTitle>
-              <CardDescription>
-                Premium tiers use multiple ML models for superior accuracy and reliability
-              </CardDescription>
+              <TrendingUp className="w-10 h-10 text-orange-400 mb-4" />
+              <CardTitle>Proven Results</CardTitle>
             </CardHeader>
+            <CardContent className="text-slate-300">
+              78% accuracy on historical top-3 predictions. Backtested across thousands of races with consistent performance.
+            </CardContent>
           </Card>
 
-          <Card className="border-border bg-card">
+          <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors">
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Shield className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Proven Accuracy</CardTitle>
-              <CardDescription>
-                Models trained on extensive historical data with validated performance metrics
-              </CardDescription>
+              <ArrowRight className="w-10 h-10 text-cyan-400 mb-4" />
+              <CardTitle>API Access</CardTitle>
             </CardHeader>
+            <CardContent className="text-slate-300">
+              Integrate predictions into your own platform. Professional-grade API with webhooks and custom parameters.
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Simple, Transparent Pricing</h2>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Basic Tier */}
+          <Card className="bg-slate-800/50 border-slate-700">
+            <CardHeader>
+              <CardTitle className="text-2xl">Predictor Basic</CardTitle>
+              <CardDescription className="text-slate-400">For casual bettors</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <span className="text-4xl font-bold">NZ$29</span>
+                <span className="text-slate-400 ml-2">/month</span>
+              </div>
+              
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>5 predictions per day</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Confidence scores</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Email notifications</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>7-day history</span>
+                </li>
+              </ul>
+              
+              <Button onClick={handleGetStarted} className="w-full bg-slate-700 hover:bg-slate-600">
+                Get Started
+              </Button>
+            </CardContent>
           </Card>
 
-          <Card className="border-border bg-card">
+          {/* Pro Tier */}
+          <Card className="bg-blue-600/20 border-blue-500/50 relative">
+            <div className="absolute -top-3 right-4">
+              <Badge className="bg-blue-600 text-white">Most Popular</Badge>
+            </div>
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Zap className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Lightning Fast</CardTitle>
-              <CardDescription>
-                Get predictions in seconds with our optimized prediction engine
-              </CardDescription>
+              <CardTitle className="text-2xl">Predictor Pro</CardTitle>
+              <CardDescription className="text-slate-400">For serious bettors</CardDescription>
             </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <span className="text-4xl font-bold">NZ$79</span>
+                <span className="text-slate-400 ml-2">/month</span>
+              </div>
+              
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Unlimited predictions</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Advanced analytics</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>SMS + email alerts</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>90-day history</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Monthly reports</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Priority support</span>
+                </li>
+              </ul>
+              
+              <Button onClick={handleGetStarted} className="w-full bg-blue-600 hover:bg-blue-700">
+                Get Started
+              </Button>
+            </CardContent>
           </Card>
 
-          <Card className="border-border bg-card">
+          {/* API Tiers */}
+          <Card className="bg-slate-800/50 border-slate-700">
             <CardHeader>
-              <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Sparkles className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle>Prediction History</CardTitle>
-              <CardDescription>
-                Track all your predictions and analyze your betting performance over time
-              </CardDescription>
+              <CardTitle className="text-2xl">Oracle API - Starter</CardTitle>
+              <CardDescription className="text-slate-400">For developers</CardDescription>
             </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <span className="text-4xl font-bold">NZ$199</span>
+                <span className="text-slate-400 ml-2">/month</span>
+              </div>
+              
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>REST API access</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>10,000 calls/month</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Webhooks</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Basic support</span>
+                </li>
+              </ul>
+              
+              <Button onClick={handleGetStarted} className="w-full bg-slate-700 hover:bg-slate-600">
+                Get Started
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Professional API Tier */}
+          <Card className="bg-slate-800/50 border-slate-700">
+            <CardHeader>
+              <CardTitle className="text-2xl">Oracle API - Professional</CardTitle>
+              <CardDescription className="text-slate-400">For platforms</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <span className="text-4xl font-bold">NZ$499</span>
+                <span className="text-slate-400 ml-2">/month</span>
+              </div>
+              
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>REST API access</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>100,000 calls/month</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>Custom parameters</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-blue-400">✓</span>
+                  <span>SLA support</span>
+                </li>
+              </ul>
+              
+              <Button onClick={handleGetStarted} className="w-full bg-slate-700 hover:bg-slate-600">
+                Get Started
+              </Button>
+            </CardContent>
           </Card>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container py-20">
-        <Card className="border-primary/20 bg-gradient-to-br from-primary/10 to-transparent">
-          <CardContent className="p-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-foreground">
-              Ready to Start Winning?
-            </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              Join thousands of users making smarter betting decisions with AI
-            </p>
-            {isAuthenticated ? (
-              <Link href="/predict">
-                <Button size="lg">
-                  <Zap className="mr-2 h-5 w-5" />
-                  Make Your First Prediction
-                </Button>
-              </Link>
-            ) : (
-              <a href={getLoginUrl()}>
-                <Button size="lg">Start Free Trial</Button>
-              </a>
-            )}
-          </CardContent>
-        </Card>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <h2 className="text-3xl font-bold mb-6">Ready to Improve Your Betting?</h2>
+        <p className="text-xl text-slate-300 mb-8">
+          Join hundreds of NZ bettors using AI-powered predictions to make smarter decisions.
+        </p>
+        <Button
+          onClick={handleGetStarted}
+          size="lg"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+        >
+          Get Started Now <ArrowRight className="ml-2 w-5 h-5" />
+        </Button>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-card/50 py-8">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2024 {APP_TITLE}. Powered by advanced machine learning.</p>
-        </div>
+      <footer className="border-t border-slate-700 bg-slate-900/50 py-8 text-center text-slate-400">
+        <p>&copy; 2024 Equine Oracle. All rights reserved. | NZ-based horse racing predictions</p>
       </footer>
     </div>
   );
