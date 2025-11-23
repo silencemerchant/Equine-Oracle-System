@@ -136,3 +136,35 @@
 - [ ] January 31: 40-50 total subscribers
 - [ ] January 31: NZ$2,000+ MRR
 - [ ] February: Clear path to NZ$5,000+ MRR
+
+
+## Phase 10: LOWKEY CONSULTANTS Integration (NEW)
+- [ ] Analyze deployment package structure and requirements
+- [ ] Create multi-tenant system architecture for package sales
+- [ ] Integrate LOWKEY CONSULTANTS company details (9384919)
+- [ ] Add company branding and white-label support
+- [ ] Create deployment and licensing framework
+- [ ] Build client onboarding workflow
+- [ ] Create package sales documentation
+- [ ] Establish infrastructure for future pentest/red team services
+- [ ] Create deployment guide for clients
+- [ ] Build client management dashboard
+- [ ] Implement usage tracking and billing per client
+
+## Phase 11: Real-Time Prediction System Integration (From Deployment Package)
+- [ ] Review RabbitMQ-based microservices architecture
+- [ ] Integrate data ingestion service
+- [ ] Integrate data enrichment service
+- [ ] Integrate automated inference service
+- [ ] Integrate prediction storage service
+- [ ] Integrate race results publisher
+- [ ] Integrate metrics calculation service
+- [ ] Integrate auto-retraining service
+- [ ] Test end-to-end feedback loop
+- [ ] Document deployment procedures
+
+## LOWKEY Consultants Milestones
+- [ ] LOWKEY CONSULTANTS LIMITED incorporation complete (Dec 5, 2025)
+- [ ] Equine Oracle Limited incorporation (TBD)
+- [ ] First package sale ready (January 2026)
+- [ ] Pentest/red team service infrastructure ready (Q1 2026)
