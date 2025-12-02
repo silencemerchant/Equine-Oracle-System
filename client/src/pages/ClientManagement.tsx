@@ -253,7 +253,7 @@ export default function ClientManagement() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-sm text-muted-foreground">Company Name</p>
-                        <p className="font-medium">lowkeyInfo?.companyName ?? 'N/A'</p>
+                        <p className="font-medium">{lowkeyInfo?.companyName ?? 'N/A'}</p>
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Company Number</p>
@@ -324,16 +324,4 @@ export default function ClientManagement() {
                 <div className="space-y-2">
                   {['basic', 'pro', 'api_starter', 'api_professional'].map(tier => (
                     <div key={tier} className="flex justify-between items-center">
-                      <span className="text-sm">{tier.replace('_', ' ').toUpperCase()}</span>
-                      <Badge>{clients?.filter(c => c.tier === tier).length || 0}</Badge>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </div>
-  );
-}
+                      <span
