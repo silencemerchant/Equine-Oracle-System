@@ -9,9 +9,10 @@ import { Link } from "wouter";
 
 export default function History() {
   const { user, isAuthenticated } = useAuth();
-  const { data: predictions, isLoading } = trpc.prediction.list.useQuery(undefined, {
-    enabled: isAuthenticated,
-  });
+  // TODO: Implement prediction history storage in database
+  // For now, showing placeholder UI
+  const predictions = [];
+  const isLoading = false;
 
   if (!isAuthenticated) {
     return (
