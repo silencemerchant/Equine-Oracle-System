@@ -11,7 +11,8 @@ export default function Analytics() {
   const [filterTrack, setFilterTrack] = useState("");
   const [filterStartDate, setFilterStartDate] = useState("");
   const [filterEndDate, setFilterEndDate] = useState("");
-const predictions: PredictionResult[] = [];
+const predictions: any[] = [];
+;
 const predictionsLoading = false;
 const { data: accuracy } = trpc.prediction.accuracy.useQuery();
 ;
