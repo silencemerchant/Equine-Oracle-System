@@ -11,9 +11,9 @@ export default function Analytics() {
   const [filterTrack, setFilterTrack] = useState("");
   const [filterStartDate, setFilterStartDate] = useState("");
   const [filterEndDate, setFilterEndDate] = useState("");
-
-  const { data: predictions, isLoading: predictionsLoading } = trpc.prediction.history.useQuery();
-  const { data: accuracy } = trpc.prediction.accuracy.useQuery();
+const predictions = [];
+const predictionsLoading = false;
+   const { data: accuracy } = trpc.prediction.accuracy.useQuery();
 
   // Filter predictions based on criteria
   const filteredPredictions = useMemo(() => {
