@@ -257,7 +257,7 @@ export default function ClientManagement() {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Company Number</p>
-                        <p className="font-medium">{lowkeyInfo.companyNumber}</p>
+                        <p className="font-medium">{lowkeyInfo?.companyNumber ?? 'N/A'}</p>
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Status</p>
