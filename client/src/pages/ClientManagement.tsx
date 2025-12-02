@@ -253,7 +253,7 @@ export default function ClientManagement() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-sm text-muted-foreground">Company Name</p>
-                        <p className="font-medium">{lowkeyInfo.companyName}</p>
+                        <p className="font-medium">lowkeyInfo?.companyName ?? 'N/A'</p>
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Company Number</p>
