@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/index.html",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "client/dist",
+        "buildCommand": "pnpm install && pnpm build"
+      }
+    },
+    {
+      "src": "server/_core/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "server/**",
+          "shared/**",
+          "drizzle/**",
+          "package.json",
+          "pnpm-lock.yaml"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/_core/index.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/index.html"
+    }
+  ],
+  "installCommand": "pnpm install",
+  "framework": null
+}
