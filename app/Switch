@@ -1,0 +1,16 @@
+switch (event.type) {
+  case 'payment_intent.succeeded':
+    const paymentIntent = event.data.object;
+    // Update DB: user access = true
+    break;
+  case 'subscription.updated':
+    const subscription = event.data.object;
+    // Update user tier
+    break;
+  case 'invoice.paid':
+    const invoice = event.data.object;
+    // Send welcome email
+    break;
+  default:
+    console.log(event.type);
+}
