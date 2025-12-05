@@ -4,7 +4,6 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "scripts": {
   "dev": "next dev",
   "build": "next build",
   "start": "next start"
