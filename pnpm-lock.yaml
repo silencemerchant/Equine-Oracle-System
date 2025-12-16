@@ -161,7 +161,7 @@ importers:
         specifier: ^5.1.5
         version: 5.1.6
       next:
-        specifier: ^14.2.15
+        specifier: 14.2.35
         version: 14.2.35(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-themes:
         specifier: ^0.4.6
