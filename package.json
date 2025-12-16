@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "pnpm build",
-    "start": "next start"
+    "start": "pnpm start"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",
